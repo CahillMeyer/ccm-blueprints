@@ -5,3 +5,18 @@ This repository is a living lab of solutions and ideas across various domains, f
 
 ## License
 Unless otherwise noted in a specific project's directory, all code in this repository is licensed under the MIT License.
+
+## Contents
+
+### Desktop Case Studies
+- [Star Plot Map View](desktop-case-studies/star-plot/)
+- [Snap-to-Coordinate & Radius Option](desktop-case-studies/snap-to-coordinate-radius/)
+- [Tree View Customization](desktop-case-studies/tree-view-customization/)
+- [Pit Stops](desktop-case-studies/pit-stops/)
+- [Section & Compartment Restrictions](desktop-case-studies/section-compartment/)
+
+### Games
+- [Times Puzzle UE4/5 Prototype](games/times-puzzle-ue/)
+
+### Backend
+- [Times Puzzle FastAPI (planned)](backend/times-puzzle-api/)
