@@ -1,2 +1,25 @@
 .DS_Store
 Thumbs.db
+/backend/times-puzzle-api/.venv
+/backend/times-puzzle-api/app/__pycache__/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.env
+.env.*
+.pytest_cache/
+.mypy_cache/
+.coverage
+dist/
+build/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+/.github
