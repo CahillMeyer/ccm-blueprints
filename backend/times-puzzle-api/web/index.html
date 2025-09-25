@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Times Puzzle API Demo</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 24px; }
+    header { margin-bottom: 16px; }
+    .row { margin: 8px 0; }
+    input { width: 5rem; padding: 6px; margin-right: 8px; }
+    button { padding: 8px 12px; margin: 6px 6px 0 0; cursor: pointer; }
+    #numbers button { min-width: 44px; }
+    .pill { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #eee; }
+    .ok { color: #0a7a3a; }
+    .bad { color: #a30; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Times Puzzle API Demo</h1>
+    <p class="pill">Backend: http://localhost:8000</p>
+  </header>
+
+  <section>
+    <div class="row">
+      <label>Min <input id="min" type="number" value="2" /></label>
+      <label>Max <input id="max" type="number" value="12" /></label>
+      <label>Size <input id="size" type="number" value="9" /></label>
+      <label>Seed <input id="seed" type="number" placeholder="(optional)" /></label>
+      <label><input id="retry" type="checkbox" /> Retry wrong answers</label>
+    </div>
+    <button id="start">Start Round</button>
+  </section>
+
+  <hr />
+
+  <section id="game" style="display:none">
+    <p>Product: <strong id="product">—</strong></p>
+    <div id="numbers"></div>
+    <p id="status"></p>
+    <button id="next">Next Round</button>
+  </section>
+
+  <script>
+    const API = 'http://localhost:8000';
+    let roundId = null;
+    let picked = [];
+
+    const el = id => document.getElementById(id);
+    const status = msg => { el('status').textContent = msg; };
+
+    async function createRound() {
+      picked = [];
+      status('');
+      const body = {
+        min: +el('min').value || 2,
+        max: +el('max').value || 12,
+        size: +el('size').value || 9,
+        retry_wrong_answers: el('retry').checked,
+      };
+      const seed = el('seed').value;
+      if (seed) body.seed = +seed;
+
+      const r = await fetch(`${API}/round`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const data = await r.json();
+      roundId = data.round_id;
+      el('product').textContent = data.product;
+      renderNumbers(data.numbers);
+      el('game').style.display = 'block';
+    }
+
+    function renderNumbers(nums) {
+      const box = el('numbers');
+      box.innerHTML = '';
+      nums.forEach(n => {
+        const b = document.createElement('button');
+        b.textContent = n;
+        b.onclick = () => selectNumber(n, b);
+        box.appendChild(b);
+      });
+    }
+
+    async function selectNumber(n, btn) {
+      if (picked.length === 0) {
+        picked.push(n);
+        btn.disabled = true;
+        status(`Picked first: ${n}. Pick another number.`);
+        return;
+      }
+      picked.push(n);
+      // send guess
+      const r = await fetch(`${API}/guess`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ round_id: roundId, a: picked[0], b: picked[1] })
+      });
+      const data = await r.json();
+      if (data.correct) {
+        status('✅ Correct! Click “Next Round”.');
+      } else {
+        status('❌ Not correct. Pick again (or enable “Retry wrong answers”).');
+      }
+      picked = [];
+      // re-enable all buttons
+      [...document.querySelectorAll('#numbers button')].forEach(b => b.disabled = false);
+    }
+
+    el('start').onclick = createRound;
+    el('next').onclick = createRound;
+  </script>
+</body>
+</html>
