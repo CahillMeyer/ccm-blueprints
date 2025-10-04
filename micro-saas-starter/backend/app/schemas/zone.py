@@ -13,3 +13,12 @@ class ZoneCreate(BaseModel):
     
     # Optional field to associate this entry with a specific user (future proofing for auth)
     user_id: str | None = None
+
+# Schema for reading a time zone entry (Output model)
+class Zone(ZoneCreate):
+    # Unique identifier, typically from the database
+    id: int
+    
+    # Configuration to allow SQLAlchemy/ORM style access
+    class Config:
+        from_attributes = True
