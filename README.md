@@ -8,15 +8,19 @@ Unless otherwise noted in a specific project's directory, all code in this repos
 
 ## Contents
 
-### Desktop Case Studies
-- [Star Plot Map View](desktop-case-studies/star-plot/)
-- [Snap-to-Coordinate & Radius Option](desktop-case-studies/snap-to-coordinate-radius/)
-- [Tree View Customization](desktop-case-studies/tree-view-customization/)
-- [Pit Stops](desktop-case-studies/pit-stops/)
-- [Section & Compartment Restrictions](desktop-case-studies/section-compartment/)
+### Case Studies
+#### Desktop Case Studies (Legacy Modernization)
+These case studies showcase C++ expertise and complex logic integration within existing desktop application frameworks, relevant to Legacy Modernization contracts.
+- [Star Plot Map View](case-studies/desktop/star-plot/)
+- [Snap-to-Coordinate & Radius Option](case-studies/desktop/snap-to-coordinate-radius/)
+- [Tree View Customization](case-studies/desktop/tree-view-customization/)
+- [Pit Stops](case-studies/desktop/pit-stops/)
+- [Section & Compartment Restrictions](case-studies/desktop/section-compartment/)
 
-### Games
-- [Times Puzzle UE4/5 Prototype](games/times-puzzle-ue/)
+####  Monolith-to-Microservice Case Study
+This section features the C++ logic extracted for API porting, demonstrating the transition from monolith components to modern services.
+- [Times Puzzle UE4/5 Prototype](case-studies/monolith-to-microservice/times-puzzle/)
 
-### Backend
-- [Times Puzzle FastAPI (planned)](backend/times-puzzle-api/)
+### Modern Cloud Blueprints
+These are production-ready architectural starters for greenfield cloud development.
+- [Micro-SaaS Starter: FastAPI, React, & Serverless AWS](micro-saas-starter/backend/)
