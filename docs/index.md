@@ -37,7 +37,7 @@ If you want to view this `docs/` folder locally:
 cd docs
 python3 -m http.server 8000
 # open http://localhost:8000
-
+```
 ## License & Contact
 - License: [MIT](../LICENSE)
 - Contact: open an [issue](../issues) or reach me on GitHub
