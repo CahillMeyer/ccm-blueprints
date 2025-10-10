@@ -1,1 +1,67 @@
+name: Deploy Backend to AWS Lambda (via SAM)
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'micro-saas-starter/backend/**' # Only run when backend files change
+
+env:
+  # The name of the CloudFormation stack to create/update in AWS
+  STACK_NAME: ccm-saas-starter
+  # The AWS region to deploy to (must be configured in secrets)
+  AWS_REGION: eu-west-1 
+  # Path to the SAM template file
+  SAM_TEMPLATE: micro-saas-starter/backend/serverless.yaml
+  # Path to the backend directory
+  SOURCE_DIR: micro-saas-starter/backend
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    # Define environment for secure access to AWS credentials
+    environment: production
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # These must be set as GitHub Secrets in the repository settings
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install dependencies
+        # Install Python dependencies from the requirements.txt file
+        run: pip install -r ${{ env.SOURCE_DIR }}/requirements.txt --target ./${{ env.SOURCE_DIR }}/.aws-sam/build/FastAPIHandlerFunction/
+
+      - name: Install SAM CLI
+        run: |
+          pip install aws-sam-cli
+
+      - name: Build & Deploy SAM Stack
+        working-directory: ${{ env.SOURCE_DIR }}
+        run: |
+          # The sam build step prepares the application for deployment
+          # It uses the Dockerfile/runtime specified in the template
+          sam build -t serverless.yaml
+          
+          # The sam deploy command executes the deployment to AWS CloudFormation
+          sam deploy \
+            --stack-name ${{ env.STACK_NAME }} \
+            --region ${{ env.AWS_REGION }} \
+            --capabilities CAPABILITY_IAM \
+            --no-confirm-changeset \
+            --resolve-s3 \
+            --parameter-overrides ParameterKey=ApiName,ParameterValue=ccm-saas-starter
