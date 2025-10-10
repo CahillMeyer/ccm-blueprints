@@ -1,7 +1,5 @@
 .DS_Store
 Thumbs.db
-/backend/times-puzzle-api/.venv
-/backend/times-puzzle-api/app/__pycache__/
 
 # Python
 __pycache__/

@@ -19,7 +19,8 @@ These case studies showcase C++ expertise and complex logic integration within e
 
 ####  Monolith-to-Microservice Case Study
 This section features the C++ logic extracted for API porting, demonstrating the transition from monolith components to modern services.
-- [Times Puzzle UE4/5 Prototype](case-studies/monolith-to-microservice/times-puzzle/)
+- [Times Puzzle UE4/5 Prototype](case-studies/monolith-to-microservice/times-puzzle/unreal-engine/)
+- [Times Puzzle FastAPI Backend](case-studies/monolith-to-microservice/times-puzzle/fastapi-backend/)
 
 ### Modern Cloud Blueprints
 These are production-ready architectural starters for greenfield cloud development.
