@@ -39,8 +39,8 @@ Source/Times/
 - On user selection, call `CheckFactors(a, b)` to validate.
 - Continue until `AllNumbersUsed()` returns true.
 
-## Roadmap
-- Port logic to **FastAPI** backend
+## Microservice Port Status
+- **Port logic to FastAPI backend** has been completed: see the [Times Puzzle API](../fastapi-backend/README.md) blueprint.
 - Add a simple web UI to play the puzzle
 - Unit tests for fairness and distribution
 
