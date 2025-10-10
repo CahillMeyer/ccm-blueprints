@@ -1,1 +1,11 @@
+# --- Core Framework & Adapter ---
+fastapi==0.110.0
+mangum==0.17.0
+uvicorn==0.27.1
 
+# --- Settings and Data Validation ---
+pydantic==2.6.1
+pydantic-settings==2.2.1
+
+# --- Utility ---
+python-multipart==0.0.9

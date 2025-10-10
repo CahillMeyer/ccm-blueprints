@@ -1,1 +1,37 @@
+# /backend/serverless.yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  CCM Micro-SaaS Starter: FastAPI on AWS Lambda/API Gateway
 
+# --- Global Settings ---
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: python3.11  # Matches the Python version in the Dockerfile
+    CodeUri: app/
+    Environment:
+      Variables:
+        # Pass configuration variables for the app
+        DATABASE_URL: "sqlite:///./inmemory_db.db"
+        API_V1_STR: "/api/v1"
+  Api:
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
+
+# --- Resources ---
+Resources:
+  FastAPIHandlerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      # Handler points to main.py, wrapped by Mangum
+      Handler: main.handler 
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /{proxy+} # Catches all API Gateway requests
+            Method: ANY
