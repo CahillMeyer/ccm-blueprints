@@ -2,29 +2,28 @@
 
 A curated set of case studies and starter templates from CCM Code.
 This site highlights desktop logistics UX work (no proprietary code),
-a small Unreal Engine prototype, and a planned FastAPI port.
+a small Unreal Engine prototype, and a cutting-edge serverless blueprint.
 
 ## Contents
 
 ### Desktop Case Studies
 - **Star Plot Map View** — route clustering & efficiency  
-  ↳ `desktop-case-studies/star-plot/README.md`
+  ↳ `../case-studies/desktop/star-plot/README.md`
 - **Snap-to-Coordinate & Radius** — editable snaps, OSRM radius, custom dirs  
-  ↳ `desktop-case-studies/snap-to-coordinate-radius/README.md`
+  ↳ `../case-studies/desktop/snap-to-coordinate-radius/README.md`
 - **Tree View Customization** — naming formats & color coding  
-  ↳ `desktop-case-studies/tree-view-customization/README.md`
+  ↳ `../case-studies/desktop/tree-view-customization/README.md`
 - **Pit Stops** — non-delivery stops with time windows  
-  ↳ `desktop-case-studies/pit-stops/README.md`
+  ↳ `../case-studies/desktop/pit-stops/README.md`
 - **Section & Compartment** — site/map restrictions & visibility  
-  ↳ `desktop-case-studies/section-compartment/README.md`
+  ↳ `../case-studies/desktop/section-compartment/README.md`
 
-### Games
+###  Monolith-to-Microservice Case Study
 - **Times Puzzle (UE4/5)** — C++ logic with fair factor-pair cycling  
-  ↳ `games/times-puzzle-ue/README.md`
+  ↳ `../case-studies/monolith-to-microservice/times-puzzle/unreal-engine/README.md`
 
-### Backend
-- **Times Puzzle API (FastAPI, planned)**  
-  ↳ `backend/times-puzzle-api/README.md`
+### Modern Cloud Blueprints
+- **Micro-SaaS Starter: FastAPI, React, & Serverless AWS** ↳ `../micro-saas-starter/backend/README.md`
 
 ## How to use this repo
 - Browse a case study, play the demo video, read the notes.
@@ -38,7 +37,6 @@ If you want to view this `docs/` folder locally:
 cd docs
 python3 -m http.server 8000
 # open http://localhost:8000
-```
 
 ## License & Contact
 - License: [MIT](../LICENSE)
