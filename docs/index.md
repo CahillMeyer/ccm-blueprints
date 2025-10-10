@@ -23,7 +23,8 @@ a small Unreal Engine prototype, and a cutting-edge serverless blueprint.
   ↳ `../case-studies/monolith-to-microservice/times-puzzle/unreal-engine/README.md`
 
 ### Modern Cloud Blueprints
-- **Micro-SaaS Starter: FastAPI, React, & Serverless AWS** ↳ `../micro-saas-starter/backend/README.md`
+- **Micro-SaaS Starter: FastAPI, React, & Serverless AWS**
+  ↳ `../micro-saas-starter/backend/README.md`
 
 ## How to use this repo
 - Browse a case study, play the demo video, read the notes.
